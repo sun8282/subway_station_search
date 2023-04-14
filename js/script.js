@@ -36,6 +36,7 @@ const util = {
 
 const state = {
   stations: [],
+  activeIndex: 0,
   clearStations() {
     this.stations = [];
   }
@@ -46,26 +47,53 @@ const events = {
     const input = e.target.value;
     if (!input.trim()) {
       $ul.innerHTML = '';
+      $result.innerHTML = '';
+      state.activeIndex = 0;
       return;
     }
     state.clearStations();
     const filteredStations = util.findAllStations(input);
     $ul.innerHTML = '';
+    $result.innerHTML = '';
     console.log(filteredStations);
-    filteredStations.forEach((station) => renderStation(station, input));
+    filteredStations.forEach((station, i) => renderStation(station, input, i));
     filteredStations.forEach((station) => {
       const stationDetails = util.getStationDetail(station);
       state.stations.push(stationDetails);
     }); 
   },
   handleFormSubmit(e) {
+    if (!$input.value.trim()) return;
+    const activeStation = $$('.indi-station').find($el => $el.classList.contains('active'));
     $result.innerHTML = '';
+    if (activeStation) {
+      const stateStationIndex = activeStation.dataset.id;
+      return renderStationDetails(state.stations[stateStationIndex]);
+    }
     state.stations.forEach(renderStationDetails);
-  }
+  },
+  handleKeyDown(e) {
+    const $autocompleteStations = $$('.indi-station');
+
+    if (e.key === 'ArrowDown') {
+      $autocompleteStations.forEach(($station) => {
+        $station.classList.remove('active');
+      });
+  
+      if (state.activeIndex >= $autocompleteStations.length) {
+        state.activeIndex = 0;
+      } 
+      const replaceValue = $autocompleteStations[state.activeIndex].textContent;
+      $input.value = replaceValue;
+      $autocompleteStations[state.activeIndex].classList.add('active');
+      state.activeIndex++;
+    }     
+  } 
 }
 
-function renderStation({ station_nm }, input) {
+function renderStation({ station_nm }, input, i) {
   const $station = document.createElement('li');
+  $station.dataset.id = i
   $station.className = 'indi-station';
   $station.innerHTML = station_nm.replace(input, `<span style="color: red">${input}</span>`);
   $ul.append($station);
@@ -83,5 +111,6 @@ function renderStationDetails({ station_nm, first_time, last_time, line_num }) {
 
 window.onload = () => {
   $input.addEventListener('input', events.handleInputChange);
+  $input.addEventListener('keydown', events.handleKeyDown);
   $form.addEventListener('submit', events.handleFormSubmit);
 }
