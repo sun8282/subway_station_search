@@ -1,11 +1,22 @@
-* { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none;list-style: none;}
-html, body { width: 100%; height: 100%; font-family: "Malgun Gothic"; font-size: 16px; text-align: center;}
+* { margin: 0; padding: 0; box-sizing: border-box; list-style: none;}
+html, body { width: 100%; height: 100%; font-family: "Malgun Gothic"; font-size: 16px; }
 .hl-key { color: #f00; font-weight: bold; }
-.autocomplete{width: 225.5px; background: rgba(0,0,0,0.5); position: relative; left:50%; transform: translateX(-50%);}
-.autocomplete>ul>li{display: block; cursor: pointer;}
+.wrap{ text-align: center; }
+.autocomplete ul{ margin-top:15px; width: 500px; height: auto; display: inline-block;}
+.autocomplete li{ width: 100%; height: 35px; line-height: 35px; color:#fff; background:#58C9B9;}
+.autocomplete li span.active-text{ display: inline; background:red; }
+.autocomplete li.active-menu{ background:#519D9E; }
+/*.autocomplete li:hover{ background:#519D9E; }*/
 
-.autocomplete>ul>li>span{color:white; cursor: pointer;}
-.active{background: rgba(0,0,0,0.8);}
-.res{width: 350px;height: auto;border:3px solid black; position: relative; left:50%; transform: translateX(-50%);}
-.text-red{color:red;}
-.autocomplete li{ color: white; }
+.result{ margin-top:20px; }
+.result>div{ width: 300px; height: 300px; background:lightblue; margin-top:50px; display: flex; flex-direction: column; }
+
+
+.active-text{
+    background: red;
+    color: #fff;
+}
+.autocomplete .activelist{
+    background: #519D9E;
+}
+
