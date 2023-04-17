@@ -31,6 +31,9 @@ const util = {
     console.log(station_nm, id);
     const station = DETAILS.find(({ station_cd }) => station_cd === id);
     return {...station, station_nm}
+  },
+  getLineNum(line_num) {
+    return !isNaN(line_num) ? `${line_num}호선` : STATION_LINE_NAME[line_num];
   }
 }
 
@@ -91,17 +94,18 @@ const events = {
   } 
 }
 
-function renderStation({ station_nm }, input, i) {
+function renderStation({ station_nm, line_num }, input, i) {
+  console.log(line_num);
   const $station = document.createElement('li');
   $station.dataset.id = i
   $station.className = 'indi-station';
-  $station.innerHTML = station_nm.replace(input, `<span style="color: red">${input}</span>`);
+  $station.innerHTML = `${station_nm.replace(input, `<span style="color: red">${input}</span>`)} ${util.getLineNum(line_num)}`;
   $ul.append($station);
 }
 
 function renderStationDetails({ station_nm, first_time, last_time, line_num }) {
   const $output = document.createElement('div');
-  const stationLineName = !isNaN(line_num) ? `${line_num}호선` : STATION_LINE_NAME[line_num];
+  const stationLineName = util.getLineNum(line_num);
   $output.innerHTML = `
     <span>${station_nm}</span> <span>${stationLineName}</span> <span>${first_time}</span> <span>${last_time}</span>
   `;
