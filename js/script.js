@@ -118,14 +118,3 @@ function actionDown(e){
 	li[idx].classList.add("activelist")
 	input.value = li[idx].innerText
 }
-
-
-
-
-
-
-
-
-
-
-
