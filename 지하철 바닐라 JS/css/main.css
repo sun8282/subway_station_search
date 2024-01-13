@@ -1,0 +1,37 @@
+* { margin: 0; padding: 0; box-sizing: border-box; list-style: none;font-family: 'IBMPlexSansKR-Regular';}
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+html, body { width: 100%; height: 100%; font-family: "Malgun Gothic"; font-size: 16px; }
+.hl-key { color: #f00; font-weight: bold; }
+.wrap{ text-align: center; }
+.search_input{
+    width: 500px; height: 40px; margin-top: 30px; font-size: 20px; border-radius: 20px; border: 1px solid #ccc;
+}
+.search_btn{
+    width: 80px; height: 40px;border: none; border-radius: 20px; background: #eee; transition: .3s;
+}
+.search_btn:hover{
+    background: #000; color: #fff;
+}
+.autocomplete ul{ margin-top:15px; width: 500px; height: auto; display: inline-block;}
+.autocomplete li{ width: 100%; height: 34px; border: 1px solid #eee; line-height: 35px; color: #000; background: #ccc;}
+.autocomplete li span.active-text{ display: inline; background:rgb(248, 61, 61);}
+.autocomplete li.activelist{ background:#ccc; border: 1px solid rgb(71, 104, 56);}
+/*.autocomplete li:hover{ background:#519D9E; }*/
+
+.result{ margin-top:20px; width: 1200px; height: auto; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr;}
+.result>div{ width: 300px; height: 300px; background: #fadcdc; margin-top:50px; display: flex; flex-direction: column; gap: 10px; border-radius: 10px;}
+
+
+.active-text{
+    background: red;
+    color: #fff;
+}
+.autocomplete .activelist{
+    background: #519D9E;
+}
+
